@@ -55,7 +55,7 @@ function initApp() {
       if (index === -1) {
         this.cart.push({
           productId: product.id,
-          image: product.kat_id + "-" + product.jenis + ".jpg",
+          image: "ld-jeans.jpg",
           name: product.nama_produk,
           price: product.price,
           option: product.option,
@@ -118,7 +118,7 @@ function initApp() {
       this.paymentMethodSelected = method;
     },
     submitable() {
-      return this.cash > 0 && this.cart.length > 0;
+      return this.change >= 0 && this.cart.length > 0;
     },
     submit() {
       const time = new Date();
@@ -135,6 +135,11 @@ function initApp() {
       return formatter.format(date);
     },
     numberFormat(number) {
+      number = parseFloat(number).toFixed(2).slice(0, -3);
+      if (typeof number === "number") {
+        number = number.toFixed(0);
+      }
+      // return number;
       return (number || "")
         .toString()
         .replace(/^0|\./g, "")
